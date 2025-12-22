@@ -11,6 +11,7 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vuedevtools from 'vite-plugin-vue-devtools'
 import { fileURLToPath, URL } from 'node:url'
+import 'vant/es/toast/style'
 const app = createApp(App)
 export default defineConfig({
   plugins: [
