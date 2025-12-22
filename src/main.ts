@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
-import vant from 'vant'
-import 'vant/lib/index.css'
+// import vant from 'vant'
+// import 'vant/lib/index.css'
 import App from './App.vue'
 import router from './router'
 import Autoimport from 'unplugin-auto-import/vite'
@@ -31,5 +31,5 @@ export default defineConfig({
 })
 app.use(createPinia())
 app.use(router)
-app.use(vant)
+// app.use(vant)
 app.mount('#app')
