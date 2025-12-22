@@ -1,6 +1,6 @@
 <script lang="ts" setup>
   import { ref } from 'vue'
-  import request from '@/utils/request'
+  import { setStorageToken } from '@/utils/storage'
   import { useRouter } from 'vue-router'
   import { LoginAPI } from '@/apis/user'
 import { showLoadingToast, showSuccessToast } from 'vant'
@@ -16,7 +16,7 @@ import { showLoadingToast, showSuccessToast } from 'vant'
       username:username.value,
       password:password.value
     })
-    localStorage.setItem('interview-token',res.data.token)
+    setStorageToken(res.data.token)
     showSuccessToast('登录成功')
     router.push('/home')
 }
