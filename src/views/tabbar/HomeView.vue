@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import ArticleItem from '@/components/ArticleItem.vue'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { getArticlesAPI, type ArticleRowItem } from '@/apis/article'

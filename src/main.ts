@@ -2,7 +2,8 @@ import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import App from './App.vue'
 import router from './router'
-import 'vant/es/toast/style'
+// 导入Vant全局样式
+import 'vant/lib/index.css'
 
 const app = createApp(App)
 

@@ -6,7 +6,6 @@ const route = useRoute()
 const router = useRouter()
 const active = ref(0)
 
-// 监听路由变化，更新active状态
 watch(
   () => route.path,
   (path) => {
