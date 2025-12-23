@@ -1,24 +1,26 @@
 <script setup lang="ts">
-import type { ArticleRowItem } from '@/apis/article';
+import type { ArticleRowItem } from '@/apis/article'
 defineProps<{
-  article:ArticleRowItem
+  article: ArticleRowItem
 }>()
 </script>
 <template>
   <van-cell class="article-item">
     <template #title>
       <div class="head">
-        <img src="article.avatar" alt=""/>
+        <img :src="article.avatar" alt="" />
         <div class="con">
-          <p class="title van-ellipsis">{{article.stem}}</p>
-          <p class="other">{{ article.creator}}|{{ article.createdAt }} </p>
+          <p class="title van-ellipsis">{{ article.stem }}</p>
+          <p class="other">{{ article.creator }} | {{ article.createdAt }}</p>
         </div>
       </div>
     </template>
 
     <template #label>
-      <div class="body van-multi-ellipsis--l2" v-html="article.views"></div>
-      <div class="foot">{{article.likeCount}}|{{ article.views }}</div>
+      <div class="body van-multi-ellipsis--l2">
+        {{ article.content }}
+      </div>
+      <div class="foot">点赞 {{ article.likeCount }} | 浏览 {{ article.views }}</div>
     </template>
   </van-cell>
 </template>

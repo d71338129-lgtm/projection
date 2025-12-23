@@ -9,19 +9,19 @@ const request = axios.create({
 
 request.interceptors.request.use(
   function (config) {
-    const token=getStorageToken()
-    if(token){
-      config.headers.Authorization='Bearer '+token
+    const token = getStorageToken()
+    if (token) {
+      config.headers.Authorization = 'Bearer ' + token
     }
     return config
   },
   function (error) {
-    if(error.response){
-      if(error.response.status===401){
+    if (error.response) {
+      if (error.response.status === 401) {
         removeStorageToken()
         router.push('/login')
         showFailToast('登录过期，请重新登录')
-      }else{
+      } else {
         showFailToast(error.response.data.message)
       }
     }
@@ -34,19 +34,10 @@ request.interceptors.response.use(
     return response.data
   },
   function (error) {
-    return Promise.reject(error)
-  },
-)
-
-request.interceptors.response.use(
-  function(response){
-    return response.data
-  },
-  function(error){
-    if(error.response){
+    if (error.response) {
       showFailToast(error.response.data.message)
     }
     return Promise.reject(error)
-  }
+  },
 )
 export default request

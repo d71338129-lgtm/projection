@@ -8,7 +8,8 @@ import CollectView from '../views/tabbar/CollectView.vue'
 import LikeView from '../views/tabbar/LikeView.vue'
 import UserView from '../views/tabbar/UserView.vue'
 import { getStorageToken } from '@/utils/storage'
-const whiteList=['/login','/register']
+
+const whiteList = ['/login', '/register']
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -16,76 +17,71 @@ const router = createRouter({
     {
       path: '/login',
       component: LoginView,
-      meta:{
-        title:'登录'
+      meta: {
+        title: '登录',
       },
     },
     {
       path: '/register',
       component: RegisterView,
-      meta:{
-        title:'注册'
+      meta: {
+        title: '注册',
       },
     },
     {
       path: '/',
       component: LayoutView,
-      redirect:'/home',
+      redirect: '/home',
       children: [
         {
           path: 'home',
           component: HomeView,
-          meta:{
-            title:'首页'
+          meta: {
+            title: '首页',
           },
         },
         {
           path: 'collect',
           component: CollectView,
-          meta:{
-            title:'收藏'
+          meta: {
+            title: '收藏',
           },
         },
         {
           path: 'like',
           component: LikeView,
-          meta:{
-            title:'喜欢'
+          meta: {
+            title: '喜欢',
           },
         },
         {
           path: 'user',
           component: UserView,
-          meta:{
-            title:'我的'
+          meta: {
+            title: '我的',
           },
-        }
+        },
       ],
     },
     {
       path: '/article/:id',
       component: ArticleView,
-      meta:{
-        title:'文章'
+      meta: {
+        title: '文章',
       },
     },
   ],
 })
 
-router.beforeEach((to)=>{
-  if(to.meta.title){
-    document.title=to.meta.title+'|面经'
+router.beforeEach((to) => {
+  if (to.meta.title) {
+    document.title = `${to.meta.title}|面经`
   }
-  const token=getStorageToken()
-if(token){
-  return true
-}else{
-  if(whiteList.includes(to.path)){
+  const token = getStorageToken()
+  if (token || whiteList.includes(to.path)) {
     return true
-  }else{
-    return '/login'
   }
-}
-
+  return '/login'
 })
+
 export default router

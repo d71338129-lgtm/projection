@@ -53,4 +53,40 @@ export const getArticlesAPI = (
   })
 }
 
+export interface OptListParams {
+  page?: number
+  pageSize?: number
+  optType?: number
+}
 
+export interface OptListResponse {
+  rows: ArticleRowItem[]
+  pageTotal: number
+  total: number
+}
+
+// 收藏列表
+export const getArticlesCollectAPI = (
+  params: OptListParams,
+): Promise<ServiceResponse<OptListResponse>> => {
+  return request.get('/h5/interview/opt/list', {
+    params: {
+      page: params.page || 1,
+      pageSize: params.pageSize,
+      optType: 2,
+    },
+  })
+}
+
+// 喜欢列表
+export const getArticlesLikeAPI = (
+  params: OptListParams,
+): Promise<ServiceResponse<OptListResponse>> => {
+  return request.get('/h5/interview/opt/list', {
+    params: {
+      page: params.page || 1,
+      pageSize: params.pageSize,
+      optType: 1,
+    },
+  })
+}
