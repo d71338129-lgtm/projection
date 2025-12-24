@@ -8,7 +8,6 @@ import CollectView from '../views/tabbar/CollectView.vue'
 import LikeView from '../views/tabbar/LikeView.vue'
 import UserView from '../views/tabbar/UserView.vue'
 import { getStorageToken } from '@/utils/storage'
-
 const whiteList = ['/login', '/register']
 
 const router = createRouter({

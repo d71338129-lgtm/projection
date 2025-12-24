@@ -1,53 +1,38 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 
-const route = useRoute()
 const router = useRouter()
-const active = ref(0)
+const active = ref()
+const menuItems = [
+  { path: '/home', label: '面经', icon: 'notes-o', activeIcon: 'notes' },
+  { path: '/collect', label: '收藏', icon: 'star-o', activeIcon: 'star' },
+  { path: '/like', label: '喜欢', icon: 'like-o', activeIcon: 'like' },
+  { path: '/user', label: '我的', icon: 'user-o', activeIcon: 'user' },
+]
 
-watch(
-  () => route.path,
-  (path) => {
-    // 提取路由的最后一部分用于匹配
-    const routePath = path.split('/').pop() || ''
-    switch (routePath) {
-      case 'home':
-        active.value = 0
-        break
-      case 'collect':
-        active.value = 1
-        break
-      case 'like':
-        active.value = 2
-        break
-      case 'user':
-        active.value = 3
-        break
-      default:
-        active.value = 0
-    }
-  },
-  { immediate: true },
-)
+const change = (index: number, path: string) => {
+  active.value = index
+  router.push(path)
+}
 </script>
 
 <template>
   <div class="layout-page">
     <router-view />
     <van-tabbar v-model:active="active">
-      <van-tabbar-item icon="notes-o" to="/home" @click="router.push('/home')">
-        面经
-      </van-tabbar-item>
-      <van-tabbar-item icon="star-o" to="/collect" @click="router.push('/collect')">
-        收藏
-      </van-tabbar-item>
-      <van-tabbar-item icon="like-o" to="/like" @click="router.push('/like')">
-        喜欢
-      </van-tabbar-item>
-      <van-tabbar-item icon="user-o" to="/user" @click="router.push('/user')">
-        我的
+      <van-tabbar-item
+        v-for="(item, index) in menuItems"
+        :key="item.path"
+        @click="change(index, item.path)"
+        :icon="index === active ? item.activeIcon : item.icon"
+      >
+        {{ item.label }}
       </van-tabbar-item>
     </van-tabbar>
   </div>
 </template>
+
+<style scoped>
+
+</style>

@@ -4,7 +4,7 @@ import App from './App.vue'
 import router from './router'
 // 导入Vant全局样式
 import 'vant/lib/index.css'
-
+import 'vant/es/tabbar-item/style/index'
 const app = createApp(App)
 
 app.use(createPinia())

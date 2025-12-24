@@ -90,3 +90,25 @@ export const getArticlesLikeAPI = (
     },
   })
 }
+
+export const getArticleDetailAPI=(
+  id:string
+):Promise<ServiceResponse<ArticleRowItem>>=>{
+  return request.get('h5/interview/show',{
+    params:{id:id}
+  })
+}
+
+export const updateLikeAPI=(id:string)=>{
+  return request.post('/h5/interview/opt',{
+    id:id,
+    optType:1
+  })
+}
+
+export const updateCollectAPI=(id:string)=>{
+  return request.post('/h5/interview/opt',{
+    id:id,
+    optType:2
+  })
+}

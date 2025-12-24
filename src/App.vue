@@ -6,6 +6,6 @@
 
 <style>
 :root:root {
-  --van-primary-color: #fa6d1d;
+  --van-primary-color: black;
 }
 </style>
