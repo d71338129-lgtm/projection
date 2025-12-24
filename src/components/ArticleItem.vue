@@ -1,11 +1,20 @@
 <script setup lang="ts">
 import type { ArticleRowItem } from '@/apis/article'
-defineProps<{
+import { useRouter } from 'vue-router'
+
+const props = defineProps<{
   article: ArticleRowItem
 }>()
+
+const router = useRouter()
+
+// 点击文章项进入详情页
+const goToDetail = () => {
+  router.push(`/article/${props.article.id}`)
+}
 </script>
 <template>
-  <van-cell class="article-item">
+  <van-cell class="article-item" @click="goToDetail">
     <template #title>
       <div class="head">
         <img :src="article.avatar" alt="" />
@@ -27,6 +36,7 @@ defineProps<{
 
 <style lang="scss" scoped>
 .article-item {
+  cursor: pointer;
   .head {
     display: flex;
     img {

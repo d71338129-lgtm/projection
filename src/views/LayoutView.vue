@@ -3,7 +3,7 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
-const active = ref()
+const active = ref(0)
 const menuItems = [
   { path: '/home', label: '面经', icon: 'notes-o', activeIcon: 'notes' },
   { path: '/collect', label: '收藏', icon: 'star-o', activeIcon: 'star' },
