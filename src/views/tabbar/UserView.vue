@@ -1,29 +1,29 @@
 <script setup lang="ts">
-import { getUserProfileAPI,logoutAPI,type UserProfile } from '@/apis/user';
-import { showConfirmDialog } from 'vant';
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
-const UserProfile=ref<UserProfile>()
-const getUserProfile=async()=>{
-  const res=await getUserProfileAPI()
-  UserProfile.value=res.data
+import { getUserProfileAPI, logoutAPI, type UserProfile } from '@/apis/user'
+import { showConfirmDialog } from 'vant'
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+const UserProfile = ref<UserProfile>()
+const getUserProfile = async () => {
+  const res = await getUserProfileAPI()
+  UserProfile.value = res.data
 }
 getUserProfile()
 
-const router=useRouter()
-const onLogout=async()=>{
-  try{
+const router = useRouter()
+const onLogout = async () => {
+  try {
     await showConfirmDialog({
-      closeOnClickOverlay:true,
-      title:'退出登录',
-      message:'确定要退出登录吗？',
-      confirmButtonText:'确定',
-      cancelButtonText:'取消'
+      closeOnClickOverlay: true,
+      title: '退出登录',
+      message: '确定要退出登录吗？',
+      confirmButtonText: '确定',
+      cancelButtonText: '取消',
     })
     await logoutAPI()
-    UserProfile.value=undefined
+    UserProfile.value = undefined
     router.push('/login')
-  }catch(err){
+  } catch (err) {
     console.log(err)
   }
 }
@@ -32,8 +32,14 @@ const onLogout=async()=>{
 <template>
   <div class="user-page">
     <div class="user">
-      <img :src="UserProfile?.avatar||'http://teachoss.itheima.net/heimaQuestionMiniapp/官方默认头像%402x.png'" alt="" />
-      <h3>{{UserProfile?.name||UserProfile?.username}}</h3>
+      <img
+        :src="
+          UserProfile?.avatar ||
+          'http://teachoss.itheima.net/heimaQuestionMiniapp/官方默认头像%402x.png'
+        "
+        alt=""
+      />
+      <h3>{{ UserProfile?.name || UserProfile?.username }}</h3>
     </div>
 
     <van-grid clickable :column-num="3" :border="false">
@@ -46,7 +52,7 @@ const onLogout=async()=>{
       <van-cell title="推荐分享" is-link />
       <van-cell title="意见反馈" is-link />
       <van-cell title="关于我们" is-link />
-      <van-cell title="退出登录" is-link @click="onLogout"/>
+      <van-cell title="退出登录" is-link @click="onLogout" />
     </van-cell-group>
   </div>
 </template>

@@ -1,17 +1,18 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import ArticleView from '@/views/ArticleView.vue'
-import LayoutView from '@/views/LayoutView.vue'
-import LoginView from '@/views/LoginView.vue'
-import RegisterView from '@/views/RegisterView.vue'
-import HomeView from '../views/tabbar/HomeView.vue'
-import CollectView from '../views/tabbar/CollectView.vue'
-import LikeView from '../views/tabbar/LikeView.vue'
-import UserView from '../views/tabbar/UserView.vue'
+import { createRouter, createWebHashHistory } from 'vue-router'
 import { getStorageToken } from '@/utils/storage'
+const ArticleView = () => import('@/views/ArticleView.vue')
+const LayoutView = () => import('@/views/LayoutView.vue')
+const LoginView = () => import('@/views/LoginView.vue')
+const RegisterView = () => import('@/views/RegisterView.vue')
+const HomeView = () => import('@/views/tabbar/HomeView.vue')
+const CollectView = () => import('@/views/tabbar/CollectView.vue')
+const LikeView = () => import('@/views/tabbar/LikeView.vue')
+const UserView = () => import('@/views/tabbar/UserView.vue')
+
 const whiteList = ['/login', '/register']
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHashHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/login',

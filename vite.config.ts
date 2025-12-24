@@ -8,6 +8,7 @@ import { VantResolver } from '@vant/auto-import-resolver'
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: '/interview-ai./',
   plugins: [
     vue(),
     AutoImport({
@@ -19,7 +20,6 @@ export default defineConfig({
   ],
   optimizeDeps: {
     esbuildOptions: {
-      // 使用现代浏览器特性，允许字符串形式的导出名（如 "module.exports"）
       target: 'esnext',
     },
   },
